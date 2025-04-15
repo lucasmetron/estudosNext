@@ -16,10 +16,22 @@ export default function Home() {
         <Link href="/posts"> Link: Posts</Link>
       </div>
 
-      {/* Aula 3- parametros */}
+      {/* Aula 3 - parametros */}
       <div>
         <h1>Acessar Exemplo</h1>
         <Link href="/exemplo?parametro=valor25"> Link: Exemplo</Link>
+      </div>
+
+      {/* Aula 4 - Nested routes */}
+      <div>
+        <h1>Acessar categorias de roupas</h1>
+        <Link href="produtos/categorias/roupas"> Link: roupas</Link>
+
+        <h1>Acessar categorias de masculino</h1>
+        <Link href="produtos/categorias/masculino"> Link: masculino</Link>
+
+        <h1>Acessar categorias de feminino</h1>
+        <Link href="produtos/categorias/feminino"> Link: feminino</Link>
       </div>
     </div>
   );

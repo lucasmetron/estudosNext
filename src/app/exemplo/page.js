@@ -13,7 +13,7 @@ function Exemplo() {
   return (
     <div>
       <h1>Parametro - {params}</h1>
-      {hasParams ? <p>Tem parametro</p> : <p>Não tem parametro</p>}
+      {hasParams ? <p>Tem parametro.</p> : <p>Não tem parametro.</p>}
     </div>
   );
 }

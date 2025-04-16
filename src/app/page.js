@@ -33,6 +33,12 @@ export default function Home() {
         <h1>Acessar categorias de feminino</h1>
         <Link href="produtos/categorias/feminino"> Link: feminino</Link>
       </div>
+
+      {/* Aula 7 - Nested layout */}
+      <div>
+        <h1>Dashboard</h1>
+        <Link href="/dashboard"> Link: Dashboard</Link>
+      </div>
     </div>
   );
 }

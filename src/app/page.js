@@ -1,3 +1,4 @@
+import BtnRedirect from "@/components/BtnRedirect";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -38,6 +39,17 @@ export default function Home() {
       <div>
         <h1>Dashboard</h1>
         <Link href="/dashboard"> Link: Dashboard</Link>
+      </div>
+
+      {/* Aula 8 - useRouter */}
+      <div>
+        <BtnRedirect />
+      </div>
+
+      {/* Aula 9 - Redirect */}
+      <div>
+        <h1>Profile</h1>
+        <Link href="/profile"> Link: Profile</Link>
       </div>
     </div>
   );

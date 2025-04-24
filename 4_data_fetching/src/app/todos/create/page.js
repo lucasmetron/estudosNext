@@ -1,10 +1,20 @@
 import Link from "next/link";
 import React from "react";
 
+import { db } from "@/db";
+import { redirect } from "next/navigation";
+
 const TodoPage = () => {
   async function addTodo(formData) {
     "use server";
-    console.log("✌️formData --->", formData);
+
+    const titulo = formData.get("titulo");
+    const descricao = formData.get("descricao");
+    const status = "pendente";
+
+    await db.todo.create({ data: { titulo, descricao, status } });
+
+    redirect("/");
   }
 
   return (

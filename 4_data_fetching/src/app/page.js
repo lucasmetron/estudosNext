@@ -1,8 +1,10 @@
 import { db } from "@/db";
+import Link from "next/link";
 
 export default async function Home() {
   const todos = await db.todo.findMany({
     select: { id: true, titulo: true, descricao: true, status: true },
+    orderBy: { id: "asc" },
   });
 
   return (
@@ -30,17 +32,26 @@ export default async function Home() {
               </div>
 
               <div className="flex gap-2">
-                <button className=" w-fit bg-blue-500 text-white  px-3 py-2 rounded-md cursor-pointer">
+                <Link
+                  className=" w-fit bg-blue-500 text-white  px-3 py-2 rounded-md cursor-pointer"
+                  href={`/todos/${todo.id}`}
+                >
                   Visualizar
-                </button>
+                </Link>
 
-                <button className=" w-fit bg-yellow-500 text-white  px-3 py-2 rounded-md cursor-pointer">
+                <Link
+                  href={`/todos/${todo.id}`}
+                  className=" w-fit bg-yellow-500 text-white  px-3 py-2 rounded-md cursor-pointer"
+                >
                   Editar
-                </button>
+                </Link>
 
-                <button className=" w-fit bg-red-500 text-white  px-3 py-2 rounded-md cursor-pointer">
+                <Link
+                  href={`/todos/${todo.id}`}
+                  className=" w-fit bg-red-500 text-white  px-3 py-2 rounded-md cursor-pointer"
+                >
                   Deletar
-                </button>
+                </Link>
               </div>
             </div>
           ))}

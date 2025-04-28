@@ -29,3 +29,23 @@ export async function addTodo(formData) {
 
   redirect("/");
 }
+
+export async function findDataById(id) {
+  const data = await db.todo.findFirst({ where: { id: parseInt(id) } });
+
+  return data;
+}
+
+export async function updateTodo(formData) {
+  const id = parseInt(formData.get("id"));
+  const titulo = formData.get("titulo");
+  const descricao = formData.get("descricao");
+  const status = formData.get("status");
+
+  await db.todo.update({
+    where: { id },
+    data: { titulo, descricao, status },
+  });
+
+  redirect("/");
+}

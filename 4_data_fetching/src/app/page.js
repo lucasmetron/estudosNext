@@ -39,7 +39,7 @@ export default async function Home() {
                 </Link>
 
                 <Link
-                  href={`/create/${todo.id}`}
+                  href={`/todos/${todo.id}/edit`}
                   className=" w-fit bg-yellow-500 text-white  px-3 py-2 rounded-md cursor-pointer"
                 >
                   Editar

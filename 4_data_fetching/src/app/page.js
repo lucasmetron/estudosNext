@@ -1,11 +1,10 @@
-import { db } from "@/db";
 import Link from "next/link";
 
+import { getTodos, deleteTodo } from "@/actions";
+import Btn from "@/components/BtnDelete";
+
 export default async function Home() {
-  const todos = await db.todo.findMany({
-    select: { id: true, titulo: true, descricao: true, status: true },
-    orderBy: { id: "asc" },
-  });
+  const todos = await getTodos();
 
   return (
     <div className="w-full flex flex-col gap-5 items-center justify-center">
@@ -40,18 +39,16 @@ export default async function Home() {
                 </Link>
 
                 <Link
-                  href={`/todos/${todo.id}`}
+                  href={`/create/${todo.id}`}
                   className=" w-fit bg-yellow-500 text-white  px-3 py-2 rounded-md cursor-pointer"
                 >
                   Editar
                 </Link>
 
-                <Link
-                  href={`/todos/${todo.id}`}
-                  className=" w-fit bg-red-500 text-white  px-3 py-2 rounded-md cursor-pointer"
-                >
-                  Deletar
-                </Link>
+                <form action={deleteTodo}>
+                  <input type="hidden" name="id" value={todo.id} />
+                  <Btn style={"bg-red-500"}>Deletar</Btn>
+                </form>
               </div>
             </div>
           ))}

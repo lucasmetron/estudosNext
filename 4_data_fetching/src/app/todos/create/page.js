@@ -1,22 +1,9 @@
 import Link from "next/link";
 import React from "react";
 
-import { db } from "@/db";
-import { redirect } from "next/navigation";
+import { addTodo } from "@/actions";
 
 const TodoPage = () => {
-  async function addTodo(formData) {
-    "use server";
-
-    const titulo = formData.get("titulo");
-    const descricao = formData.get("descricao");
-    const status = "pendente";
-
-    await db.todo.create({ data: { titulo, descricao, status } });
-
-    redirect("/");
-  }
-
   return (
     <div className="w-full flex flex-col items-center justify-center gap-1">
       <h1 className="p-10 text-2xl">Criação do Todo</h1>

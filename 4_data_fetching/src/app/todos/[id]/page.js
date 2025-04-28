@@ -1,12 +1,12 @@
-import { db } from "@/db";
-import { notFound } from "next/navigation";
 import React from "react";
+import { notFound } from "next/navigation";
+import { db } from "@/db";
 
 const TaskToView = async ({ params }) => {
-  const obj = await params;
+  await new Promise((a) => setTimeout(a, 2000)); //load fake
 
+  const obj = await params;
   const data = await db.todo.findFirst({ where: { id: parseInt(obj.id) } });
-  console.log("✌️data --->", data);
 
   if (!data) {
     return notFound();

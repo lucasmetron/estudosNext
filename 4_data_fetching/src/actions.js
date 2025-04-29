@@ -42,22 +42,28 @@ export async function updateTodo(prevState, formData) {
   const descricao = formData.get("descricao");
   const status = formData.get("status");
 
-  if (titulo.length < 5) {
+  try {
+    if (titulo.length < 5) {
+      return {
+        error: "O titulo deve ter no mínimo 10 caracteres",
+      };
+    }
+
+    if (descricao.length < 10) {
+      return {
+        error: "A descrição deve ter no mínimo 10 caracteres",
+      };
+    }
+
+    await db.todo.update({
+      where: { id },
+      data: { titulo, descricao, status },
+    });
+
+    redirect("/");
+  } catch (error) {
     return {
-      error: "O titulo deve ter no mínimo 10 caracteres",
+      error: "Sistema offline",
     };
   }
-
-  if (descricao.length < 10) {
-    return {
-      error: "A descrição deve ter no mínimo 10 caracteres",
-    };
-  }
-
-  await db.todo.update({
-    where: { id },
-    data: { titulo, descricao, status },
-  });
-
-  redirect("/");
 }

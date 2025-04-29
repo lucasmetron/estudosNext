@@ -36,11 +36,23 @@ export async function findDataById(id) {
   return data;
 }
 
-export async function updateTodo(formData) {
+export async function updateTodo(prevState, formData) {
   const id = parseInt(formData.get("id"));
   const titulo = formData.get("titulo");
   const descricao = formData.get("descricao");
   const status = formData.get("status");
+
+  if (titulo.length < 5) {
+    return {
+      error: "O titulo deve ter no mínimo 10 caracteres",
+    };
+  }
+
+  if (descricao.length < 10) {
+    return {
+      error: "A descrição deve ter no mínimo 10 caracteres",
+    };
+  }
 
   await db.todo.update({
     where: { id },

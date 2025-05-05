@@ -81,13 +81,14 @@ export async function updateTodo(prevState, formData) {
 }
 
 export async function toogleStatus(formData) {
-  console.log("✌️formData teste--->", formData);
   const id = parseInt(formData.get("id"));
-  console.log("✌️id --->", id);
   const status = formData.get("status");
+
+  console.log("✌️id --->", id);
   console.log("✌️status --->", status);
 
   const value = await db.todo.findFirst({ where: { id: id } });
+  console.log("✌️value --->", value);
 
   if (value) {
     await db.todo.update({

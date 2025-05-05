@@ -37,19 +37,20 @@ export async function findDataById(id) {
 }
 
 export async function updateTodo(prevState, formData) {
+  let canRedirect = false;
   const id = parseInt(formData.get("id"));
   const titulo = formData.get("titulo");
   const descricao = formData.get("descricao");
   const status = formData.get("status");
 
   try {
-    if (titulo.length < 5) {
+    if (titulo?.length < 5) {
       return {
         error: "O titulo deve ter no mínimo 10 caracteres",
       };
     }
 
-    if (descricao.length < 10) {
+    if (descricao?.length < 5) {
       return {
         error: "A descrição deve ter no mínimo 10 caracteres",
       };
@@ -60,10 +61,14 @@ export async function updateTodo(prevState, formData) {
       data: { titulo, descricao, status },
     });
 
-    redirect("/");
+    canRedirect = true;
   } catch (error) {
+    canRedirect = false;
     return {
       error: "Sistema offline",
     };
+  }
+  if (canRedirect) {
+    redirect("/");
   }
 }

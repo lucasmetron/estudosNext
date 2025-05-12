@@ -5,6 +5,7 @@ export default function Home() {
     <div className="flex flex-col">
       <Link href={"/client"}>Client page</Link>
       <Link href={"/server"}>Server page</Link>
+      <Link href={"/middleware"}>Middleware</Link>
     </div>
   );
 }

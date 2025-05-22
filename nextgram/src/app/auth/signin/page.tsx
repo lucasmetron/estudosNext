@@ -12,7 +12,7 @@ export default function SignIn() {
 
       <button
         onClick={() => {
-          signIn("", { callbackUrl: "/" });
+          signIn("google", { callbackUrl: "/" });
         }}
         className="border-2 border-black rounded-md py-2 px-5 text-center text-black flex gap-2 items-center cursor-pointer"
       >

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { auth } from "auth";
 import BtnLogin from "@/components/BtnLogin";
 import { updateUser, getUser } from "@/actions";
+import BtnUploadImg from "@/components/BtnUploadImg";
 
 const Profile = async () => {
   const session = await auth();
@@ -50,29 +51,11 @@ const Profile = async () => {
           />
         </div>
 
-        <div className="w-full flex flex-col gap-2">
-          <label className="text-black">Selecione uma imagem</label>
-
-          {/* Input oculto */}
-          <input
-            id="file-upload"
-            name="file-upload"
-            type="file"
-            className="hidden"
-            accept="image/*"
-          />
-
-          {/* Label como botão */}
-          <label
-            htmlFor="file-upload"
-            className="inline-block px-4 py-2 bg-green-600 text-white text-center rounded cursor-pointer hover:bg-green-700"
-          >
-            Escolher imagem
-          </label>
-        </div>
+        <BtnUploadImg nameInput="file-upload" />
 
         <div className="w-full flex justify-end pt-2">
           <button
+            name=""
             className="bg-blue-500 px-4 py-2 rounded cursor-pointer hover:bg-blue-600"
             type="submit"
           >

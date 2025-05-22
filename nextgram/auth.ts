@@ -20,15 +20,6 @@ const config = {
             emailVerified: new Date(),
           },
         });
-      } else {
-        await db.user.update({
-          where: { id: existigUser.id },
-          data: {
-            name: user.name,
-            image: user.image,
-            emailVerified: new Date(),
-          },
-        });
       }
       return true;
     },

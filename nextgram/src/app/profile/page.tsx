@@ -59,6 +59,7 @@ const Profile = async () => {
             name="file-upload"
             type="file"
             className="hidden"
+            accept="image/*"
           />
 
           {/* Label como botão */}

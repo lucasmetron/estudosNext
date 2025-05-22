@@ -4,7 +4,6 @@ import Image from "next/image";
 import { auth } from "auth";
 import BtnLogin from "@/components/BtnLogin";
 import { updateUser, getUser } from "@/actions";
-import BtnUploadImg from "@/components/BtnUploadImg";
 
 const Profile = async () => {
   const session = await auth();
@@ -31,6 +30,7 @@ const Profile = async () => {
       />
 
       <form
+        encType="multipart/form-data"
         action={updateUser}
         className=" flex w-4/10 flex-col gap-2 items-center justify-start border-2 border-gray-300 rounded-md p-3"
       >
@@ -51,7 +51,15 @@ const Profile = async () => {
           />
         </div>
 
-        <BtnUploadImg nameInput="file-upload" />
+        <div className="w-full flex flex-col gap-0.5">
+          <label className="text-black">Url da imagem</label>
+          <input
+            type="text"
+            name="urlImg"
+            id="urlImg"
+            className="w-full border-2 border-gray-300 rounded-md text-black py-2 px-2 focus:outline-none focus:border-blue-500"
+          />
+        </div>
 
         <div className="w-full flex justify-end pt-2">
           <button

@@ -3,18 +3,21 @@ import { auth, signOut, signIn } from "auth";
 import Image from "next/image";
 import Link from "next/link";
 import { getFirstName } from "@/utils/functions";
+import { getUser } from "@/actions";
 
 const BtnLogin = async () => {
   const session = await auth();
+  const user = await getUser(session?.user?.email || "");
+
   console.log("✌️session --->", session);
   return (
     <div>
       {session && session?.user ? (
         <div className="flex gap-4 items-center justify-center">
-          <p>{getFirstName(session?.user?.name || "SemNome")}</p>
+          <p>{getFirstName(user?.name || "SemNome")}</p>
           <Image
             className="rounded-2xl"
-            src={session?.user?.image || ""}
+            src={user?.image || ""}
             width={40}
             height={40}
             alt="Picture of the author"

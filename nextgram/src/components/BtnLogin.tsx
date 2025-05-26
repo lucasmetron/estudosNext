@@ -9,7 +9,6 @@ const BtnLogin = async () => {
   const session = await auth();
   const user = await getUser(session?.user?.email || "");
 
-  console.log("✌️session --->", session);
   return (
     <div>
       {session && session?.user ? (

@@ -24,7 +24,6 @@ const BtnLogin = async () => {
 
           <Link href={"/profile"}> Perfil </Link>
           <Link href={"/addPost"}> Criar postagens </Link>
-          <Link href={"/myPosts"}> Minhas postagens </Link>
 
           <form
             action={async () => {

@@ -6,7 +6,6 @@ export const revalidate = 60; // Revalidate every 60 seconds
 
 export default async function Home() {
   const posts = await getAllPosts();
-  console.log("✌️posts --->", posts);
 
   return (
     <div className="bg-white overflow-auto flex flex-col gap-2 w-full h-full items-center justify-start">

@@ -43,7 +43,7 @@ export default async function Home() {
 
                 <DataAbouUser userId={post.userId} />
 
-                <Like postId={post.id} />
+                <Like />
               </div>
             </div>
           ))}

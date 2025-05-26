@@ -96,3 +96,13 @@ export async function deletePost(id: string) {
     return false;
   }
 }
+
+export async function getPostById(id: string) {
+  try {
+    const posts = await db.post.findUnique({ where: { id: id } });
+    return posts;
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    return [];
+  }
+}

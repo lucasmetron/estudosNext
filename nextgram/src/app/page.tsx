@@ -1,5 +1,6 @@
 import { getAllPosts } from "@/actions";
 import DataAbouUser from "@/components/DataAbouUser";
+import Like from "@/components/Like";
 import Image from "next/image";
 
 export const revalidate = 60; // Revalidate every 60 seconds
@@ -37,10 +38,12 @@ export default async function Home() {
                 />
               </div>
 
-              <div className="w-full flex flex-col items-start pt-2 justify-between">
-                <p className="text-black pb-2">{post.caption}</p>
+              <div className="w-full flex flex-col items-start pt-2 justify-between gap-2">
+                <p className="text-black ">{post.caption}</p>
 
                 <DataAbouUser userId={post.userId} />
+
+                <Like postId={post.id} />
               </div>
             </div>
           ))}

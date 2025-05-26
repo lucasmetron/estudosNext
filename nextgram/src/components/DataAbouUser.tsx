@@ -1,4 +1,4 @@
-import { deletePost, getUserById } from "@/actions";
+import { getUserById } from "@/actions";
 import Image from "next/image";
 import React from "react";
 
@@ -26,15 +26,6 @@ const DataAbouUser = async ({ userId }: DataAbouUserProps) => {
       ) : (
         <p className="">Usuário desconhecido</p>
       )}
-
-      <form
-        action={async () => {
-          "use server";
-          await deletePost("cmb5f61g40001qiuw61s5qek6");
-        }}
-      >
-        <button>delete</button>
-      </form>
     </div>
   );
 };

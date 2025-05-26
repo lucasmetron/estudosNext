@@ -1,5 +1,6 @@
 "use server";
 
+import { redirect } from "next/navigation";
 import { db } from "./db";
 
 export async function updateUser(formData: FormData) {
@@ -37,8 +38,18 @@ export async function getUser(email: string) {
   }
 }
 
+export async function getUserById(id: string) {
+  try {
+    const user = await db.user.findUnique({
+      where: { id: id },
+    });
+    return user;
+  } catch (error) {
+    console.error("Error fetching user:", error);
+  }
+}
+
 export async function addPost(formData: FormData) {
-  let isSuccess = false;
   const image = formData.get("image") as string;
   const content = formData.get("content") as string;
   const email = formData.get("email") as string;
@@ -53,20 +64,35 @@ export async function addPost(formData: FormData) {
     throw new Error("User not found");
   }
 
-  await db.post
-    .create({
-      data: {
-        imageUrl: image,
-        caption: content,
-        userId: user.id,
-      },
-    })
-    .then(() => {
-      isSuccess = true;
-    })
-    .catch(() => {
-      isSuccess = false;
-    });
+  await db.post.create({
+    data: {
+      imageUrl: image,
+      caption: content,
+      userId: user.id,
+    },
+  });
 
-  return isSuccess;
+  redirect("/");
+}
+
+export async function getAllPosts() {
+  try {
+    const posts = await db.post.findMany();
+    return posts;
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    return [];
+  }
+}
+
+export async function deletePost(id: string) {
+  try {
+    await db.post.delete({
+      where: { id: id },
+    });
+    return true;
+  } catch (error) {
+    console.error("Error deleting post:", error);
+    return false;
+  }
 }

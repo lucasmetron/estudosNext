@@ -1,7 +1,7 @@
 import BtnLogin from "./BtnLogin";
 import Link from "next/link";
 
-const Header = () => {
+const Header = async () => {
   return (
     <div className="p-5 bg-gray-900 flex gap-5 justify-between items-center">
       <Link href={"/"}>

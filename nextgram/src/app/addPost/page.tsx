@@ -20,10 +20,7 @@ const AddPost = async () => {
 
       <form
         className="flex flex-col gap-4 border rounded p-5 w-50/100 border-gray-300 items-end"
-        action={async (formData) => {
-          "use server";
-          await addPost(formData);
-        }}
+        action={addPost}
       >
         <input type="hidden" name="email" value={session.user.email || ""} />
 
